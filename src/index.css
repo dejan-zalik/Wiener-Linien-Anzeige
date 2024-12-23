@@ -1,0 +1,70 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Lucida Sans Unicode';
+}
+
+.display-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-box-small {
+  flex-basis: 33.33%;
+}
+
+.display-box-large {
+  flex-basis: 66.66%;
+}
+
+.display-title {
+  font-size: 12px;
+  background-color: #ffced1;
+  padding-left: 3px;
+}
+
+.display-content {
+  flex-grow: 1;
+  align-content: center;
+  text-align: center;
+  border: solid;
+  border-color: #ffced1;
+}
+
+.display-content-line {
+  font-size: 2lh;
+}
+
+.display-content-direction {
+  padding-left: 3px;
+}
+
+.display-followup-times {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #3498db;
+  /* animation: loading 10s linear infinite; */
+}
+
+@keyframes loading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}

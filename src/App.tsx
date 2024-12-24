@@ -3,30 +3,24 @@
 import { useEffect, useState } from 'react';
 import './index.css';
 import TramDisplay from './components/TramDisplay';
+import { getTramData, TramStopData } from './utils/monitorApi';
+import CurrentTime from './components/CurrentTime';
 
-const sourceUrl = 'https://eogrkqip9l.execute-api.eu-west-1.amazonaws.com/';
-const tramSelection = [3445, 3448];
-const currentTime = new Date();
+const tramStopIds = [3445, 3448];
 
-function App() {
-  const [timesData, setTimesData] = useState<any>([]);
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
+const App = () => {
+  const [tramStopData, setTramStopData] = useState<TramStopData>([]);
 
-  const fetchData = () => {
-    setTimesData([]);
-
-    tramSelection.forEach((id) => {
-      fetch(`${sourceUrl}monitor?stopId=${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setTimesData((prevData: any) => ({
-            ...prevData,
-            [`tramId${id}`]: data,
-          }));
-        })
-        .catch((err) => console.log(err));
-    });
+  const fetchData = async () => {
+    try {
+      const data = await getTramData(tramStopIds);
+      setTramStopData(data);
+    } catch (error) {
+      window.alert(`something went wrong`);
+    }
   };
+
+  console.log(Object.values(tramStopData));
 
   useEffect(() => {
     fetchData();
@@ -53,18 +47,14 @@ function App() {
     <>
       <main className="app-container">
         <div>
-          <div style={{ textAlign: 'right', fontSize: '12px' }}>{time}</div>
-          <div className="progress-container">
-            <div className="progress-bar"></div>
-          </div>
-
-          {Object.values(timesData).map((tram: any, index: number) => (
-            <TramDisplay tram={tram} index={index} currentTime={currentTime} />
+          <CurrentTime />
+          {Object.entries(tramStopData).map(([stopId, tram]) => (
+            <TramDisplay key={stopId} tram={tram} />
           ))}
         </div>
       </main>
     </>
   );
-}
+};
 
 export default App;

@@ -26,7 +26,9 @@ const TramFollowupTrains = ({ tramDepartures }: Props) => {
                 {getMinuteDifferenceFromNow(display.departureTime.timeReal)}
               </div>
             ) : (
-              <div className="box-border" key={index}></div>
+              <div className="box-border" key={index}>
+                {''}
+              </div>
             )
           )}
         </div>

@@ -1,4 +1,4 @@
-// import { skleraSDK } from '@sklera/sdk';
+import { skleraSDK } from '@sklera/sdk';
 
 import { useEffect, useState } from 'react';
 import './index.css';
@@ -16,32 +16,25 @@ const App = () => {
       const data = await getTramData(tramStopIds);
       setTramStopData(data);
     } catch (error) {
-      window.alert(`something went wrong`);
+      window.alert('something went wrong');
     }
   };
-
-  console.log(Object.values(tramStopData));
 
   useEffect(() => {
     fetchData();
 
-    // const fetchInterval = setInterval(() => {
-    //   fetchData();
-    // }, 10000);
+    const fetchInterval = setInterval(() => {
+      fetchData();
+    }, 60000);
 
-    // const timeInterval = setInterval(() => {
-    //   setTime(new Date().toLocaleTimeString());
-    // }, 1000);
-
-    // return () => {
-    //   clearInterval(fetchInterval);
-    //   clearInterval(timeInterval);
-    // };
+    return () => {
+      clearInterval(fetchInterval);
+    };
   }, []);
 
-  // useEffect(() => {
-  //   skleraSDK.loaded().then(console.log).catch(console.error);
-  // }, []);
+  useEffect(() => {
+    skleraSDK.loaded().then(console.log).catch(console.error);
+  }, []);
 
   return (
     <>

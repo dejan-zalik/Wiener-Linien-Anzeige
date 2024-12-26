@@ -10,11 +10,11 @@
   flex-direction: column;
 }
 
-.display-box-small {
+.row-box-small {
   flex-basis: 33.33%;
 }
 
-.display-box-large {
+.row-box-large {
   flex-basis: 66.66%;
 }
 
@@ -50,6 +50,13 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
+}
+
+.tram-stop {
+  text-align: center;
+  padding: 12px 0 12px 0;
+  border: solid;
+  border-color: #ffced1;
 }
 
 .flex-container {

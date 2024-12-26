@@ -1,5 +1,11 @@
 const sourceUrl = 'https://eogrkqip9l.execute-api.eu-west-1.amazonaws.com/';
+
 export type TramStopDataItem = {
+  locationStop: {
+    properties: {
+      title: string;
+    };
+  };
   lines: {
     towards: string;
     name: string;
@@ -11,6 +17,7 @@ export type TramStopDataItem = {
     };
   }[];
 };
+
 export type TramStopData = Record<number, TramStopDataItem>;
 
 export async function getTramData(
@@ -26,6 +33,5 @@ export async function getTramData(
     return acc;
   }, {});
 
-  console.log(tramData);
   return tramData;
 }

@@ -1,16 +1,18 @@
 import { getMinuteDifferenceFromNow } from '../utils/time';
-import { Props } from './TramDisplay';
 
-const TramNextTrain = ({ tram }: Props) => {
+type Props = {
+  tramNextTrain: string;
+};
+
+const TramNextTrain = ({ tramNextTrain }: Props) => {
   return (
-    <div className="display-box display-box-small">
+    <div className="row-box-small display-box">
       <div className="display-title">Nächster Zug</div>
-      <div className="display-content display-content-line">
-        <div>
-          {getMinuteDifferenceFromNow(
-            tram.lines[0].departures.departure[0].departureTime.timeReal
-          )}
+      <div className="display-content">
+        <div style={{ fontSize: '36px' }}>
+          {getMinuteDifferenceFromNow(tramNextTrain)}
         </div>
+        <div style={{ fontSize: '12px' }}>min</div>
       </div>
     </div>
   );

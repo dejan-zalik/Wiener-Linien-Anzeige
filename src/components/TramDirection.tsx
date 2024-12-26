@@ -1,11 +1,13 @@
-import { Props } from './TramDisplay';
+type Props = {
+  tramDirection: string;
+};
 
-const TramDirection = ({ tram }: Props) => {
+const TramDirection = ({ tramDirection }: Props) => {
   return (
-    <div className="display-box display-box-large">
+    <div className="row-box-large display-box">
       <div className="display-title">Richtung</div>
       <div className="display-content display-content-direction">
-        {tram.lines[0].towards}
+        {tramDirection}
       </div>
     </div>
   );

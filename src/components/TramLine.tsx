@@ -1,12 +1,12 @@
-import { Props } from './TramDisplay';
+type Props = {
+  tramLineName: string;
+};
 
-const TramLine = ({ tram }: Props) => {
+const TramLine = ({ tramLineName }: Props) => {
   return (
-    <div className="display-box display-box-small">
+    <div className="row-box-small display-box">
       <div className="display-title">Linie</div>
-      <div className="display-content display-content-line">
-        {tram.lines[0].departures.departure[0]?.vehicle.name}
-      </div>
+      <div className="display-content display-content-line">{tramLineName}</div>
     </div>
   );
 };
